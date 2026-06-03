@@ -1,0 +1,23 @@
+node_modules/
+dist/
+.env
+.env.*
+!.env.example
+.DS_Store
+*.log
+
+# Local runtime data. These files can contain customer information,
+# screenshots, trace archives, confirmation records, and service tokens.
+data/*
+debug/*
+records/*
+config/*.request.json
+!config/example.request.json
+VPS_DEPLOYMENT.md
+open-bochk-dashboard.command
+stop-bochk-dashboard-tunnel.command
+
+# Keep empty runtime directories if needed.
+!data/.gitkeep
+!debug/.gitkeep
+!records/.gitkeep

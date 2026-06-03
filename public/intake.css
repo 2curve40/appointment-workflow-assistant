@@ -1,0 +1,277 @@
+:root {
+  color-scheme: light;
+  --bg: #f5f5f7;
+  --surface: rgba(255, 255, 255, 0.86);
+  --text: #1d1d1f;
+  --muted: #6e6e73;
+  --border: rgba(60, 60, 67, 0.16);
+  --accent: #007aff;
+  --green: #1f8f43;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  background: linear-gradient(180deg, #fbfbfd 0%, var(--bg) 100%);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", sans-serif;
+}
+
+.intakeShell {
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  padding: 24px;
+}
+
+.intakeCard {
+  width: min(720px, 100%);
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  background: var(--surface);
+  box-shadow: 0 22px 70px rgba(0, 0, 0, 0.08);
+  padding: 28px;
+}
+
+header {
+  margin-bottom: 22px;
+}
+
+header p,
+header span {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 650;
+}
+
+h1 {
+  margin: 8px 0;
+  font-size: clamp(30px, 5vw, 48px);
+  line-height: 1.05;
+}
+
+form {
+  display: grid;
+  gap: 16px;
+}
+
+.formSection {
+  display: grid;
+  gap: 14px;
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.58);
+}
+
+.formSection h2,
+.reviewPanel h2 {
+  margin: 0;
+  font-size: 20px;
+  letter-spacing: 0;
+}
+
+.grid2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+label {
+  display: grid;
+  gap: 7px;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  min-height: 46px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: #fff;
+  color: var(--text);
+  padding: 11px 13px;
+  font: inherit;
+  font-size: 16px;
+}
+
+fieldset {
+  min-width: 0;
+  margin: 0;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 13px;
+}
+
+legend {
+  padding: 0 7px;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 750;
+}
+
+.timeGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 9px;
+}
+
+.checkOption {
+  display: flex;
+  align-items: center;
+  min-height: 42px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: #fff;
+  padding: 8px 10px;
+  color: var(--text);
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.checkOption input {
+  width: auto;
+  min-height: auto;
+  margin: 0 8px 0 0;
+  padding: 0;
+}
+
+textarea {
+  resize: vertical;
+  line-height: 1.45;
+}
+
+button {
+  min-height: 48px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #fff;
+  font: inherit;
+  font-weight: 750;
+  cursor: pointer;
+}
+
+.secondary {
+  border: 1px solid var(--border);
+  background: #fff;
+  color: var(--text);
+}
+
+button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.message {
+  min-height: 22px;
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 650;
+}
+
+.message.success {
+  color: var(--green);
+}
+
+.message.error {
+  color: #c0271d;
+}
+
+.reviewPanel {
+  display: grid;
+  gap: 16px;
+  margin-top: 20px;
+  padding: 18px;
+  border: 1px solid rgba(0, 122, 255, 0.26);
+  border-radius: 20px;
+  background: rgba(240, 246, 255, 0.78);
+}
+
+.reviewPanel[hidden],
+form[hidden],
+[hidden] {
+  display: none !important;
+}
+
+.reviewPanel p,
+.reviewPanel span {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.reviewGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.reviewItem {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: #fff;
+  padding: 12px;
+}
+
+.reviewItem span {
+  font-size: 12px;
+}
+
+.reviewItem strong {
+  overflow-wrap: anywhere;
+  color: var(--text);
+  font-size: 16px;
+  letter-spacing: 0;
+}
+
+.formActions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.reviewMessage {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 750;
+}
+
+.reviewMessage.error {
+  color: #c0271d;
+}
+
+@media (max-width: 640px) {
+  .intakeShell {
+    padding: 14px;
+  }
+
+  .intakeCard {
+    padding: 20px;
+  }
+
+  .grid2 {
+    grid-template-columns: 1fr;
+  }
+
+  .timeGrid,
+  .reviewGrid,
+  .formActions {
+    grid-template-columns: 1fr;
+  }
+}

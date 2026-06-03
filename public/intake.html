@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="zh-Hans">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>资料录入</title>
+    <link rel="stylesheet" href="./intake.css">
+  </head>
+  <body>
+    <main class="intakeShell">
+      <section class="intakeCard">
+        <header>
+          <p>客户入口</p>
+          <h1>提交办理资料</h1>
+          <span>提交后只会进入后台系统，不会显示其他客户的信息。</span>
+        </header>
+
+        <form id="intakeForm">
+          <section class="formSection">
+            <h2>身份资料</h2>
+            <div class="grid2">
+              <label>
+                證件種類
+                <select name="documentType" required>
+                  <option value="中國居民身份證">中國居民身份證</option>
+                  <option value="香港身份證">香港身份證</option>
+                  <option value="澳門身份證">澳門身份證</option>
+                  <option value="護照">護照</option>
+                </select>
+              </label>
+              <label>
+                開立賬戶種類
+                <select name="accountType" required>
+                  <option value="跨境理財通:北向通匯款專戶">跨境理財通:北向通匯款專戶</option>
+                  <option value="一般賬戶" selected>一般賬戶</option>
+                  <option value="特選賬戶">特選賬戶</option>
+                </select>
+              </label>
+            </div>
+
+            <label>
+              稱謂
+              <select name="salutation" required>
+                <option value="先生">先生</option>
+                <option value="小姐">小姐</option>
+                <option value="太太">太太</option>
+                <option value="女士">女士</option>
+              </select>
+            </label>
+
+            <div class="grid2">
+              <label>
+                姓氏
+                <input name="surname" autocomplete="family-name" required placeholder="須與身份證明文件相同">
+              </label>
+              <label>
+                名字
+                <input name="givenName" autocomplete="given-name" required placeholder="須與身份證明文件相同">
+              </label>
+            </div>
+          </section>
+
+          <section class="formSection">
+            <h2>联系方式</h2>
+            <div class="grid2">
+              <label>
+                國家/區域編號
+                <select name="countryCode" required>
+                  <option value="86 中國內地">86 中國內地</option>
+                  <option value="852 香港">852 香港</option>
+                  <option value="853 澳門">853 澳門</option>
+                  <option value="886 台灣">886 台灣</option>
+                </select>
+              </label>
+              <label>
+                流動電話號碼
+                <input name="phone" autocomplete="tel" required inputmode="tel" placeholder="请输入手机号码">
+              </label>
+            </div>
+
+            <label>
+              電郵地址
+              <input name="email" autocomplete="email" type="email" required placeholder="name@example.com">
+            </label>
+          </section>
+
+          <section class="formSection">
+            <h2>办理偏好</h2>
+            <div class="grid2">
+              <label>
+                目标日期
+                <input name="preferredDate" type="date" required>
+              </label>
+              <label>
+                第二页选择方式
+                <select name="selectionMode" required>
+                  <option value="date-first">先選定預約日期和時間</option>
+                  <option value="branch-first">先選定分行</option>
+                </select>
+              </label>
+            </div>
+
+            <div class="grid2">
+              <label>
+                区域
+                <select name="district" required>
+                  <option value="">请选择区域</option>
+                  <option value="中西區">中西區</option>
+                  <option value="東區">東區</option>
+                  <option value="離島區">離島區</option>
+                  <option value="九龍城區">九龍城區</option>
+                  <option value="葵青區">葵青區</option>
+                  <option value="觀塘區">觀塘區</option>
+                  <option value="北區">北區</option>
+                  <option value="西貢區">西貢區</option>
+                  <option value="沙田區">沙田區</option>
+                  <option value="深水埗區">深水埗區</option>
+                  <option value="南區">南區</option>
+                  <option value="大埔區">大埔區</option>
+                  <option value="荃灣區">荃灣區</option>
+                  <option value="屯門區">屯門區</option>
+                  <option value="灣仔區">灣仔區</option>
+                  <option value="黃大仙區">黃大仙區</option>
+                  <option value="油尖旺區">油尖旺區</option>
+                  <option value="元朗區">元朗區</option>
+                  <option value="custom">其他 / 不确定</option>
+                </select>
+              </label>
+              <label>
+                网点偏好
+                <input name="branch" required placeholder="例如：尖沙咀；多个可用逗号分隔">
+              </label>
+            </div>
+
+            <label id="customDistrictLabel" hidden>
+              自定义区域
+              <input name="customDistrict" placeholder="请输入区域或附近地点">
+            </label>
+
+            <fieldset>
+              <legend>可接受時段</legend>
+              <div class="timeGrid">
+                <label class="checkOption"><input type="checkbox" name="preferredTimes" value="09:00"> 09:00</label>
+                <label class="checkOption"><input type="checkbox" name="preferredTimes" value="09:45"> 09:45</label>
+                <label class="checkOption"><input type="checkbox" name="preferredTimes" value="10:30"> 10:30</label>
+                <label class="checkOption"><input type="checkbox" name="preferredTimes" value="11:15"> 11:15</label>
+                <label class="checkOption"><input type="checkbox" name="preferredTimes" value="14:00"> 14:00</label>
+                <label class="checkOption"><input type="checkbox" name="preferredTimes" value="14:45"> 14:45</label>
+                <label class="checkOption"><input type="checkbox" name="preferredTimes" value="15:30"> 15:30</label>
+                <label class="checkOption"><input type="checkbox" name="preferredTimes" value="16:15"> 16:15</label>
+              </div>
+            </fieldset>
+
+            <label>
+              备注
+              <textarea name="note" rows="4" placeholder="可填写其他时间偏好、证件补充或特别说明"></textarea>
+            </label>
+          </section>
+
+          <button class="primary" type="submit">检查并确认</button>
+          <p id="intakeMessage" class="message" role="status"></p>
+        </form>
+
+        <section id="reviewPanel" class="reviewPanel" hidden>
+          <div>
+            <p>确认资料</p>
+            <h2>请核对后再提交</h2>
+            <span>确认后资料会进入后台任务列表。</span>
+          </div>
+          <div id="reviewContent" class="reviewGrid"></div>
+          <div class="formActions">
+            <button id="editButton" class="secondary" type="button">返回修改</button>
+            <button id="confirmButton" class="primary" type="button">确认提交</button>
+          </div>
+        </section>
+      </section>
+    </main>
+    <script src="./intake.js" type="module"></script>
+  </body>
+</html>

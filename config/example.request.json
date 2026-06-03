@@ -1,0 +1,40 @@
+{
+  "customer": {
+    "salutation": "先生",
+    "surname": "CHAN",
+    "givenName": "TAI MAN",
+    "countryCode": "852 香港",
+    "phone": "91234567",
+    "email": "example@example.com",
+    "documentType": "中國居民身份證",
+    "accountType": "一般賬戶"
+  },
+  "appointment": {
+    "preferredDistricts": ["Central and Western", "Wan Chai", "Yau Tsim Mong"],
+    "preferredBranches": [],
+    "preferredDates": [],
+    "preferredTimes": ["09:45", "10:30", "14:00"],
+    "timeWindows": [
+      {
+        "start": "09:00",
+        "end": "12:30"
+      },
+      {
+        "start": "14:00",
+        "end": "17:00"
+      }
+    ],
+    "daysAhead": 7
+  },
+  "runner": {
+    "headless": false,
+    "releaseWindowRefreshIntervalMs": 1500,
+    "normalRefreshIntervalMs": 900000,
+    "releaseWindowBeforeMs": 10000,
+    "releaseWindowAfterMs": 70000,
+    "maxAttempts": 0
+  },
+  "xianyu": {
+    "rawConversation": "客户：中环/湾仔都可以，上午或下午2点后，电话+852 9123 4567，邮箱example@example.com，证件尾号1234"
+  }
+}

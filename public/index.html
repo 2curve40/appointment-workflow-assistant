@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="zh-Hans">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>BOCHK 预约任务面板</title>
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <h1>BOCHK 预约任务</h1>
+        <p>管理客户预约、收入和完成情况</p>
+      </div>
+      <div class="actions">
+        <div id="releaseClock" class="releaseClock" aria-live="polite">
+          <span>当前时间</span>
+          <strong>--:--:--</strong>
+        </div>
+        <button id="startRunner" class="primary">开始预约</button>
+        <button id="stopRunner">暂停</button>
+        <details class="rhythmPanel rhythmMenu">
+          <summary>
+            <span>运行节奏</span>
+            <span id="rhythmMode" class="pill">--</span>
+          </summary>
+          <div class="rhythmGrid">
+            <div><span>当前统一状态</span><strong id="rhythmStatus">--</strong></div>
+            <div><span>最近一次检查时间</span><strong id="rhythmLastCheck">--</strong></div>
+            <div><span>最近一次检查结果</span><strong id="rhythmLastResult">--</strong></div>
+            <div><span>下一次普通检查</span><strong id="rhythmNextCheck">--</strong></div>
+            <div><span>距离下一个半点</span><strong id="rhythmHalfHour">--</strong></div>
+            <div><span>半点前提醒窗口</span><strong id="rhythmReminder">--</strong></div>
+            <div><span>重点时间窗口</span><strong id="rhythmFocus">--</strong></div>
+            <div><span>下一次恢复运行</span><strong id="rhythmResume">--</strong></div>
+          </div>
+          <div class="debugActions">
+            <button id="openDebugFolder">打开 debug 文件夹</button>
+            <button id="clearDebugFiles">清空 debug 文件</button>
+          </div>
+        </details>
+      </div>
+    </header>
+
+    <main>
+      <span id="releaseCountdown" hidden></span>
+      <section class="metrics" id="metrics"></section>
+      <section class="panel trendPanel">
+        <div class="panelHeader">
+          <h2>收入趋势</h2>
+          <span id="lastOrderNotice" class="pill">暂无开单</span>
+        </div>
+        <canvas id="revenueChart" height="140"></canvas>
+      </section>
+
+      <section class="workspace">
+        <form id="taskForm" class="panel">
+          <h2>新增任务</h2>
+          <label>
+            闲鱼对话
+            <textarea name="rawConversation" rows="5" placeholder="先粘贴闲鱼对话，我会自动识别姓名、电话、邮箱、区域、日期和时段"></textarea>
+          </label>
+          <div class="assistRow">
+            <button type="button" id="parseConversation">识别并填充</button>
+            <span id="requiredNotice" class="requiredNotice">请先粘贴对话或填写必填项</span>
+          </div>
+          <details id="taskDetails" class="taskDetails">
+            <summary>任务资料</summary>
+          <label>
+            任务名称
+            <input name="title" required placeholder="例如：客户A 中环上午">
+          </label>
+          <div class="grid2">
+            <label>
+              證件種類
+              <select name="documentType" required>
+                <option value="中國居民身份證">中國居民身份證</option>
+                <option value="香港身份證">香港身份證</option>
+                <option value="澳門身份證">澳門身份證</option>
+                <option value="護照">護照</option>
+              </select>
+            </label>
+            <label>
+              開立賬戶種類
+              <select name="accountType" required>
+                <option value="跨境理財通:北向通匯款專戶">跨境理財通:北向通匯款專戶</option>
+                <option value="一般賬戶" selected>一般賬戶</option>
+                <option value="特選賬戶">特選賬戶</option>
+              </select>
+            </label>
+          </div>
+          <div class="grid2">
+            <label>
+              稱謂
+              <select name="salutation" required>
+                <option value="先生">先生</option>
+                <option value="小姐">小姐</option>
+                <option value="太太">太太</option>
+                <option value="女士">女士</option>
+              </select>
+            </label>
+            <label>
+              收入
+              <input name="fee" type="number" min="0" step="1" value="20">
+            </label>
+          </div>
+          <div class="grid2">
+            <label>
+              姓氏
+              <input name="surname" required placeholder="須與身份證明文件相同">
+            </label>
+            <label>
+              名字
+              <input name="givenName" required placeholder="須與身份證明文件相同">
+            </label>
+          </div>
+          <div class="grid2">
+            <label>
+              國家/區域編號
+              <select name="countryCode" required>
+                <option value="852 香港">852 香港</option>
+                <option value="86 中國內地">86 中國內地</option>
+                <option value="853 澳門">853 澳門</option>
+                <option value="886 台灣">886 台灣</option>
+              </select>
+            </label>
+            <label>
+              流動電話號碼
+              <input name="phone" required placeholder="91234567">
+            </label>
+          </div>
+          <label>
+            電郵地址
+            <input name="email" type="email" required>
+          </label>
+          <fieldset>
+            <legend>區域偏好</legend>
+            <div class="checkGrid" id="districtChoices"></div>
+          </fieldset>
+          <label>
+            分行偏好
+            <input name="branches" placeholder="可留空，多个用逗号分隔">
+          </label>
+          <label>
+            第二页选择方式
+            <select name="selectionMode" required>
+              <option value="date-first">先選定預約日期和時間</option>
+              <option value="branch-first">先選定分行</option>
+            </select>
+          </label>
+          <fieldset>
+            <legend>預約日期</legend>
+            <div class="calendarHeader" id="calendarHeader"></div>
+            <div class="calendarWeek">
+              <span>日</span>
+              <span>一</span>
+              <span>二</span>
+              <span>三</span>
+              <span>四</span>
+              <span>五</span>
+              <span>六</span>
+            </div>
+            <div class="calendarGrid" id="dateChoices"></div>
+          </fieldset>
+          <fieldset>
+            <legend>可接受時段</legend>
+            <div class="checkGrid compact" id="timeChoices"></div>
+          </fieldset>
+          <section class="taskPreview" id="taskPreview" aria-live="polite"></section>
+          <div class="formActions">
+            <button id="submitTask" class="primary" type="submit">新增任务</button>
+            <button id="cancelEdit" type="button" hidden>取消修改</button>
+          </div>
+          </details>
+        </form>
+
+        <section class="panel taskPanel">
+          <div class="panelHeader">
+            <h2>任务列表</h2>
+            <span id="runnerState" class="pill">未运行</span>
+          </div>
+          <div id="tasks" class="tasks"></div>
+        </section>
+      </section>
+    </main>
+
+    <script src="./app.js" type="module"></script>
+  </body>
+</html>
